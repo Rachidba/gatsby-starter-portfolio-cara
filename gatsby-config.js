@@ -5,22 +5,32 @@ const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
 
 module.exports = {
   siteMetadata: {
-    // You can overwrite values here that are used for the SEO component
-    // You can also add new values here to query them like usual
-    // See all options: https://github.com/LekoArts/gatsby-themes/blob/master/themes/gatsby-theme-cara/gatsby-config.js
     siteTitleAlt: `Rachid BAAZIZ - Software Engineer`,
+    siteTitle: `Rachid BAAZIZ`,
+    siteTitleAlt: `Rachid BAAZIZ - Software Engineer`,
+    siteHeadline: `Rachid BAAZIZ - Software Engineer`,
+    siteUrl: `https://rachidba.com`,
+    siteDescription: `Rachid BAAZIZ - Software Engineer`,
+    siteLanguage: `en`,
+    author: `@rachidba`,
   },
   plugins: [
+    googleAnalyticsTrackingId && {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          googleAnalyticsTrackingId,
+        ],
+        pluginConfig: {
+          head: true,
+          anonymize_ip: true,
+        },
+      },
+    },
     {
       resolve: `@lekoarts/gatsby-theme-cara`,
       // See the theme's README for all available options
       options: {},
-    },
-    googleAnalyticsTrackingId && {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_ID,
-      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
